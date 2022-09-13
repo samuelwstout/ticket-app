@@ -1,8 +1,10 @@
-import React from 'react'
+import Navigation from "../Navigation"
 
-const MyTickets = () => {
+const MyTickets = ({setUser, user}) => {
   return (
-    <div>MyTickets</div>
+    <div>
+      <Navigation setUser={setUser} user={user} />
+    </div>
   )
 }
 

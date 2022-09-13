@@ -25,12 +25,12 @@ useEffect(() => {
     <Router>
       <Routes>
         <Route path="/" element={<LandingPage user={user} />} />
-        <Route path="/login" element={<Login />} />
+        <Route path="/login" element={<Login setUser={setUser} />} />
         <Route path="/signup" element={<Signup setUser={setUser} />} />
-        <Route path="/concerts" element={<Concerts />} />
-        <Route path="/create_concert" element={<CreateConcert />} />
-        <Route path="/my_tickets" element={<MyTickets />} />
-        <Route path="/my_concerts" element={<MyConcerts />} />
+        <Route path="/concerts" element={<Concerts setUser={setUser} user={user} />} />
+        <Route path="/create_concert" element={<CreateConcert setUser={setUser} user={user} />} />
+        <Route path="/my_tickets" element={<MyTickets setUser={setUser} user={user} />} />
+        <Route path="/my_concerts" element={<MyConcerts setUser={setUser} user={user} />} />
       </Routes>
     </Router>
   )
