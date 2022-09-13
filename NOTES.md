@@ -10,5 +10,5 @@
 * concert has many users through tickets <br>
 
 * user: username password_digest
-* concert: name date description
-* ticket: price concert_id user_id
+* concert: title date description
+* ticket: price:integer concert_id user_id
