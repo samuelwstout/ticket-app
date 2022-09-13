@@ -1,10 +1,6 @@
 class Api::UsersController < ApplicationController
-    def index
-        users = User.all
-        render json: users
-    end
-
-    # get '/api/me'
+  
+  # get '/api/me'
   def show
     if current_user
       render json: current_user, status: :ok

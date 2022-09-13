@@ -1,25 +1,40 @@
-import logo from './logo.svg';
-import './App.css';
+import {useState, useEffect} from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Login from './components/Authentication/Login';
+import Signup from './components/Authentication/Signup';
+import LandingPage from './components/LandingPage';
+import Concerts from './components/App/Concerts';
+import CreateConcert from './components/App/CreateConcert';
+import MyTickets from './components/App/MyTickets';
+import MyConcerts from './components/App/MyConcerts';
 
-function App() {
+
+const App = () => {
+
+const [user, setUser] = useState(null)
+
+useEffect(() => {
+    fetch('/api/me').then((r) => {
+      if (r.ok) {
+        r.json().then((user) => setUser(user))
+      }
+    })
+  }, [])
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <Router>
+      <Routes>
+        <Route path="/" element={<LandingPage user={user} />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Signup setUser={setUser} />} />
+        <Route path="/concerts" element={<Concerts />} />
+        <Route path="/create_concert" element={<CreateConcert />} />
+        <Route path="/my_tickets" element={<MyTickets />} />
+        <Route path="/my_concerts" element={<MyConcerts />} />
+      </Routes>
+    </Router>
+  )
+
 }
 
 export default App;
