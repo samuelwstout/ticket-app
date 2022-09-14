@@ -5,6 +5,7 @@ const Concerts = ({setUser, user}) => {
 
   const [concerts, setConcerts] = useState([])
   const [concertId, setConcertId] = useState(null)
+  const [r, setR] = useState(false)
 
   useEffect(() => {
     fetch('/api/concerts')
@@ -24,11 +25,12 @@ if (concertId) {
       concert_id: concertId
     })
   })
-  .then(r => console.log(r))
+  .then(() => setR(true))
 }
 
   return (
     <div>
+      {r && <h1>Hey you bought a ticket</h1>}
       <Navigation setUser={setUser} user={user} />
       {concerts.map(concert => {
       return (
