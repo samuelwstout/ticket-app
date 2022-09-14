@@ -25,7 +25,6 @@ const handleLogout = () => {
         <li><Link to="/concerts">Concerts</Link></li>
         <li><Link to="/create_concert">Create Concert</Link></li>
         <li><Link to="/my_tickets">My Tickets</Link></li>
-        <li><Link to="/my_concerts">My Concerts</Link></li>
         <p><button onClick={handleLogout}>Logout</button></p>
     </div>
   )
