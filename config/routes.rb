@@ -4,9 +4,9 @@ Rails.application.routes.draw do
   # # Leave this here to help deploy your app later!
   # get "*path", to: "fallback#index", constraints: ->(req) { !req.xhr? && req.format.html? }
   namespace :api do
-    resources :users, only: [:index]
-    resources :concerts, only: [:index]
-    resources :tickets, only: [:index]
+    resources :users
+    resources :concerts
+    resources :tickets
 
     get "/me", to: "users#show"
     post "/signup", to: "users#create"
