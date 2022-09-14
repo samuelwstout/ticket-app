@@ -6,7 +6,6 @@ import LandingPage from './components/LandingPage';
 import Concerts from './components/App/Concerts';
 import CreateConcert from './components/App/CreateConcert';
 import MyTickets from './components/App/MyTickets';
-import MyConcerts from './components/App/MyConcerts';
 
 
 const App = () => {
@@ -30,7 +29,6 @@ useEffect(() => {
         <Route path="/concerts" element={<Concerts setUser={setUser} user={user} />} />
         <Route path="/create_concert" element={<CreateConcert setUser={setUser} user={user} />} />
         <Route path="/my_tickets" element={<MyTickets setUser={setUser} user={user} />} />
-        <Route path="/my_concerts" element={<MyConcerts setUser={setUser} user={user} />} />
       </Routes>
     </Router>
   )
