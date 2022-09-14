@@ -9,7 +9,7 @@ const LandingPage = ({user}) => {
     if (user) {
       navigate('/concerts')
     }
-  }, [user])
+  }, [user, navigate])
 
   return (
     <div>
