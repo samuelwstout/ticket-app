@@ -1,18 +1,19 @@
 import Navigation from "../Navigation"
 import React, { useState, useEffect } from 'react'
 
-const Concerts = ({setUser, user, setConcerts, concerts}) => {
-
+const Concerts = ({setUser, user, setConcerts, concerts, userId}) => {
+  
   const [concertId, setConcertId] = useState(null)
   const [res, setRes] = useState(false)
 
   useEffect(() => {
     fetch('/api/concerts')
       .then(r => r.json())
-      .then(concerts => setConcerts(concerts))
-  }, [])
+      .then(data => setConcerts(data))
+  }, [setConcerts])
 
-if (concertId) {
+  
+useEffect(() => {
   fetch('/api/tickets', {
     method: 'post',
     headers: {
@@ -20,7 +21,7 @@ if (concertId) {
       'Content-Type': 'application/json'
     },
     body: JSON.stringify({
-      user_id: user.id,
+      user_id: userId,
       concert_id: concertId
     })
   })
@@ -29,7 +30,7 @@ if (concertId) {
    setRes(true)
    console.log(data)
   })
-}
+}, [concertId, userId])
 
   return (
     <div>
@@ -42,7 +43,7 @@ if (concertId) {
           <h2>{concert.date}</h2>
           <h2>{concert.description}</h2>
           <h2>Ticket price: ${concert.price}</h2>
-          <button onClick={() => setConcertId(concert.id)}>Buy ticket</button>
+          <p onClick={handleClick}><button onClick={() => setConcertId(concert.id)}>Buy ticket</button></p>
         </div>
       )})}
     </div>
