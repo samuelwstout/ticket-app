@@ -2,12 +2,12 @@ import {useState} from 'react'
 import Navigation from "../Navigation"
 
 
-const CreateConcert = ({setUser, user}) => {
+const CreateConcert = ({setUser, user, setConcerts, concerts}) => {
 
 const [title, setTitle] = useState('')
 const [date, setDate] = useState(null)
 const [description, setDescription] = useState('')
-const [price, setPrice] = useState(0)
+const [price, setPrice] = useState('')
 
 const handleSubmit = (e) => {
   e.preventDefault()
@@ -25,8 +25,12 @@ const handleSubmit = (e) => {
   })
     .then(res => {
       if (res.ok) {
-        res.json().then(user => {
-          setUser(user)
+        res.json().then(data => {
+          setConcerts([...concerts, data])
+          setTitle('')
+          setDate(null)
+          setDescription('')
+          setPrice('')
         })
       } else {
         res.json().then(errors => {

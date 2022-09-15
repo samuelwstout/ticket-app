@@ -11,6 +11,7 @@ import MyTickets from './components/App/MyTickets';
 const App = () => {
 
 const [user, setUser] = useState(null)
+const [concerts, setConcerts] = useState([])
 
 useEffect(() => {
     fetch('/api/me').then((r) => {
@@ -26,8 +27,8 @@ useEffect(() => {
         <Route path="/" element={<LandingPage user={user} />} />
         <Route path="/login" element={<Login setUser={setUser} />} />
         <Route path="/signup" element={<Signup setUser={setUser} />} />
-        <Route path="/concerts" element={<Concerts setUser={setUser} user={user} />} />
-        <Route path="/create_concert" element={<CreateConcert setUser={setUser} user={user} />} />
+        <Route path="/concerts" element={<Concerts setUser={setUser} user={user} setConcerts={setConcerts} concerts={concerts} />} />
+        <Route path="/create_concert" element={<CreateConcert setUser={setUser} user={user} setConcerts={setConcerts} concerts={concerts} />} />
         <Route path="/my_tickets" element={<MyTickets setUser={setUser} user={user} />} />
       </Routes>
     </Router>

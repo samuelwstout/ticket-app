@@ -1,11 +1,10 @@
 import Navigation from "../Navigation"
 import React, { useState, useEffect } from 'react'
 
-const Concerts = ({setUser, user}) => {
+const Concerts = ({setUser, user, setConcerts, concerts}) => {
 
-  const [concerts, setConcerts] = useState([])
   const [concertId, setConcertId] = useState(null)
-  const [r, setR] = useState(false)
+  const [res, setRes] = useState(false)
 
   useEffect(() => {
     fetch('/api/concerts')
@@ -25,12 +24,16 @@ if (concertId) {
       concert_id: concertId
     })
   })
-  .then(() => setR(true))
+  .then(r => r.json())
+  .then((data) => {
+   setRes(true)
+   console.log(data)
+  })
 }
 
   return (
     <div>
-      {r && <h1>Hey you bought a ticket</h1>}
+      {res && <h1>Hey you bought a ticket</h1>}
       <Navigation setUser={setUser} user={user} />
       {concerts.map(concert => {
       return (
