@@ -4,16 +4,16 @@ import React, { useState, useEffect } from 'react'
 const Concerts = ({setUser, user, setConcerts, concerts, userId}) => {
   
   const [concertId, setConcertId] = useState(null)
-  const [res, setRes] = useState(false)
 
-  useEffect(() => {
+useEffect(() => {
     fetch('/api/concerts')
       .then(r => r.json())
       .then(data => setConcerts(data))
   }, [setConcerts])
 
-  
 useEffect(() => {
+  // Before this conditional, this was running a post request with null values on EVERY rerender because there's always a userId. 
+  if (concertId) {
   fetch('/api/tickets', {
     method: 'post',
     headers: {
@@ -27,14 +27,12 @@ useEffect(() => {
   })
   .then(r => r.json())
   .then((data) => {
-   setRes(true)
-   console.log(data)
-  })
+      console.log(data)
+  })}
 }, [concertId, userId])
 
   return (
     <div>
-      {res && <h1>Hey you bought a ticket</h1>}
       <Navigation setUser={setUser} user={user} />
       {concerts.map(concert => {
       return (
@@ -43,7 +41,7 @@ useEffect(() => {
           <h2>{concert.date}</h2>
           <h2>{concert.description}</h2>
           <h2>Ticket price: ${concert.price}</h2>
-          <p onClick={handleClick}><button onClick={() => setConcertId(concert.id)}>Buy ticket</button></p>
+          <p><button onClick={() => setConcertId(concert.id)}>Buy ticket</button></p>
         </div>
       )})}
     </div>

@@ -11,8 +11,9 @@ import MyTickets from './components/App/MyTickets';
 const App = () => {
 
 const [user, setUser] = useState(null)
-const [userId, setUserId] = useState(null)
+const [userId, setUserId] = useState()
 const [concerts, setConcerts] = useState([])
+
 
 useEffect(() => {
     fetch('/api/me').then((r) => {
@@ -23,7 +24,7 @@ useEffect(() => {
         })
       }
     })
-  }, [])
+  }, [setUser, setUserId])
 
   return (
     <Router>
@@ -33,7 +34,7 @@ useEffect(() => {
         <Route path="/signup" element={<Signup setUser={setUser} />} />
         <Route path="/concerts" element={<Concerts setUser={setUser} user={user} setConcerts={setConcerts} concerts={concerts} userId={userId} />} />
         <Route path="/create_concert" element={<CreateConcert setUser={setUser} user={user} setConcerts={setConcerts} concerts={concerts} />} />
-        <Route path="/my_tickets" element={<MyTickets setUser={setUser} user={user} />} />
+        <Route path="/my_tickets" element={<MyTickets setUser={setUser} user={user} userId={userId} concerts={concerts} />} />
       </Routes>
     </Router>
   )
