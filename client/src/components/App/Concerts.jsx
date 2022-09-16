@@ -3,7 +3,9 @@ import React, { useState, useEffect } from 'react'
 
 const Concerts = ({setUser, user, setConcerts, concerts, userId}) => {
   
-  const [concertId, setConcertId] = useState(null)
+  const [concertFetch, setConcertFetch] = useState(null)
+  const [open, setOpen] = useState(false)
+  const [notes, setNotes] = useState('')
 
 useEffect(() => {
     fetch('/api/concerts')
@@ -12,8 +14,7 @@ useEffect(() => {
   }, [setConcerts])
 
 useEffect(() => {
-  // Before this conditional, this was running a post request with null values on EVERY rerender because there's always a userId. 
-  if (concertId) {
+  if (concertFetch !== null) {
   fetch('/api/tickets', {
     method: 'post',
     headers: {
@@ -22,14 +23,20 @@ useEffect(() => {
     },
     body: JSON.stringify({
       user_id: userId,
-      concert_id: concertId
+      concert_id: concertFetch.id,
+      title: concertFetch.title,
+      date: concertFetch.date,
+      description: concertFetch.description,
+      price: concertFetch.price,
+      user_notes: notes
     })
   })
   .then(r => r.json())
   .then((data) => {
       console.log(data)
   })}
-}, [concertId, userId])
+}, [concertFetch, userId, notes])
+
 
   return (
     <div>
@@ -41,7 +48,17 @@ useEffect(() => {
           <h2>{concert.date}</h2>
           <h2>{concert.description}</h2>
           <h2>Ticket price: ${concert.price}</h2>
-          <p><button onClick={() => setConcertId(concert.id)}>Buy ticket</button></p>
+          <p><button onClick={() => setOpen(true)}>Buy ticket?</button></p>
+          {open &&
+            <form onSubmit={(e) => {
+              e.preventDefault();
+              setConcertFetch(concert)
+            }}>
+              <label htmlFor='notes'>Notes: </label>
+              <input type='text' value={notes} onChange={(e) => setNotes(e.target.value)} name='notes' />
+              <input type='submit' value='Buy ticket' />
+            </form>
+          }
         </div>
       )})}
     </div>
