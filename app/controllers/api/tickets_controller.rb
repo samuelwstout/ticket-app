@@ -10,11 +10,21 @@ class Api::TicketsController < ApplicationController
         render json: ticket
     end
 
+    def update
+        ticket = Ticket.find_by(id: params[:id])
+        if ticket
+            ticket.update(user_notes: params[:user_notes])
+            render json: ticket
+        else
+            render json: { error: "Ticket not found" }, status: :not_found
+        end
+    end
+
     def destroy
         ticket = Ticket.find_by(id: params[:id])
         if ticket
             ticket.destroy
-            head :no_content
+            render json: ticket
         else
             render json: { error: "Ticket not found" }, status: :not_found
         end
