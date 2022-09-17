@@ -14,7 +14,7 @@ const [user, setUser] = useState(null)
 const [userId, setUserId] = useState()
 const [concerts, setConcerts] = useState([])
 
-
+// Read current user
 useEffect(() => {
     fetch('/api/me').then((r) => {
       if (r.ok) {

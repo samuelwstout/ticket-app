@@ -9,6 +9,7 @@ const [date, setDate] = useState('')
 const [description, setDescription] = useState('')
 const [price, setPrice] = useState('')
 
+// Create concert
 const handleSubmit = (e) => {
   e.preventDefault()
   fetch('/api/concerts', {

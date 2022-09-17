@@ -8,6 +8,7 @@ const MyTickets = ({setUser, user, userId}) => {
   const [editText, setEditText] = useState('')
   const [editId, setEditId] = useState()
 
+  // Read all tickets
   useEffect(() => {
     if (userId) {
     fetch('/api/tickets')
@@ -16,6 +17,7 @@ const MyTickets = ({setUser, user, userId}) => {
     }
   }, [setTickets, userId])
 
+  // Delete ticket
   useEffect(() => {
     if (deleteId !== undefined) {
       fetch(`/api/tickets/${deleteId}`, {
@@ -25,10 +27,21 @@ const MyTickets = ({setUser, user, userId}) => {
         },
       })
       .then(r => r.json())
-      .then(data => console.log(data))
+      .then(data => {
+        console.log(data)
+        // establishes data.id and ticket.id
+        const ticketIds = tickets.map(t => t.id)
+        const index = ticketIds.indexOf(data.id)
+        ticketIds.splice(index, 1)
+
+        const finalArray = tickets.filter(t => t.id !== data.id)
+        setTickets(finalArray.map(a => a))
+
+      })
     }
   }, [deleteId])
 
+// Update ticket
   useEffect(() => {
   if (editId !== undefined) {
     fetch(`/api/tickets/${editId}`, {

@@ -8,6 +8,7 @@ const Login = ({setUser}) => {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
 
+  // Login user
   const handleSubmit = (event) => {
     event.preventDefault()
     fetch('/api/login', {

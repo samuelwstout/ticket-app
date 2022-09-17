@@ -7,16 +7,18 @@ const Concerts = ({setUser, user, setConcerts, concerts, userId}) => {
   const [open, setOpen] = useState(false)
   const [notes, setNotes] = useState('')
 
+// Read all concerts
 useEffect(() => {
     fetch('/api/concerts')
       .then(r => r.json())
       .then(data => setConcerts(data))
   }, [setConcerts])
 
+// Create ticket
 useEffect(() => {
   if (concertFetch !== null) {
   fetch('/api/tickets', {
-    method: 'post',
+    method: 'POST',
     headers: {
       'Accept': 'application/json',
       'Content-Type': 'application/json'

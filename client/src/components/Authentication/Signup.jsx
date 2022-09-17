@@ -9,6 +9,7 @@ const Signup = ({ setUser }) => {
   const [password, setPassword] = useState('')
   const [passwordConfirmation, setPasswordConfirmation] = useState('')
 
+  // Create user
   const handleSubmit = (e) => {
     e.preventDefault()
     
@@ -36,8 +37,6 @@ const Signup = ({ setUser }) => {
         }
       })
   }
-
-
 
   return (
     <div>
