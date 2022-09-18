@@ -5,13 +5,13 @@ class Api::ConcertsController < ApplicationController
     end
 
     def create
-        concert = Concert.create(params)
+        concert = Concert.create(concert_params)
         render json: concert, status: :created
     end
 
     private
 
-    def params
+    def concert_params
         params.permit(:title, :date, :description, :price)
     end
 end

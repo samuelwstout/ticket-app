@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react'
 
 const Concerts = ({setUser, user, setConcerts, concerts, userId}) => {
   
-  const [concertFetch, setConcertFetch] = useState(null)
+  const [createTicket, setCreateTicket] = useState(null)
   const [open, setOpen] = useState(false)
   const [notes, setNotes] = useState('')
 
@@ -16,7 +16,7 @@ useEffect(() => {
 
 // Create ticket
 useEffect(() => {
-  if (concertFetch !== null) {
+  if (createTicket !== null) {
   fetch('/api/tickets', {
     method: 'POST',
     headers: {
@@ -25,11 +25,11 @@ useEffect(() => {
     },
     body: JSON.stringify({
       user_id: userId,
-      concert_id: concertFetch.id,
-      title: concertFetch.title,
-      date: concertFetch.date,
-      description: concertFetch.description,
-      price: concertFetch.price,
+      concert_id: createTicket.id,
+      title: createTicket.title,
+      date: createTicket.date,
+      description: createTicket.description,
+      price: createTicket.price,
       user_notes: notes
     })
   })
@@ -37,7 +37,7 @@ useEffect(() => {
   .then((data) => {
       console.log(data)
   })}
-}, [concertFetch, userId, notes])
+}, [createTicket, userId, notes])
 
 
   return (
@@ -54,7 +54,7 @@ useEffect(() => {
           {open &&
             <form onSubmit={(e) => {
               e.preventDefault();
-              setConcertFetch(concert)
+              setCreateTicket(concert)
             }}>
               <label htmlFor='notes'>Notes: </label>
               <input type='text' value={notes} onChange={(e) => setNotes(e.target.value)} name='notes' />

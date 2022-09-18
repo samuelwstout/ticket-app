@@ -11,7 +11,7 @@ class Api::UsersController < ApplicationController
 
   # post '/api/signup'
   def create
-    user = User.create(params)
+    user = User.create(user_params)
     if user.valid?
       session[:user_id] = user.id
       render json: user, status: :ok
@@ -22,7 +22,7 @@ class Api::UsersController < ApplicationController
 
   private
 
-  def params
+  def user_params
     params.permit(:username, :password, :password_confirmation)
   end
 
