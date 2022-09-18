@@ -15,7 +15,7 @@ const MyTickets = ({setUser, user, userId}) => {
     .then(res => res.json())
     .then(res => setTickets(res.filter(ticket => ticket.user_id === userId)))
     }
-  }, [setTickets, userId])
+  }, [userId, setTickets])
 
   // Delete ticket
   useEffect(() => {
@@ -28,35 +28,40 @@ const MyTickets = ({setUser, user, userId}) => {
       })
       .then(r => r.json())
       .then(data => {
-        console.log(data)
         // establishes data.id and ticket.id
         const ticketIds = tickets.map(t => t.id)
         const index = ticketIds.indexOf(data.id)
         ticketIds.splice(index, 1)
-
         const finalArray = tickets.filter(t => t.id !== data.id)
         setTickets(finalArray.map(a => a))
-
       })
     }
-  }, [deleteId])
+  }, [])
 
-// Update ticket
-  useEffect(() => {
-  if (editId !== undefined) {
-    fetch(`/api/tickets/${editId}`, {
-      method: 'PATCH',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        user_notes: editText
-      })
-    })
-    .then(r => r.json())
-    .then(data => console.log(data))
-  }
-  }, [editId, editText])
+// // Update ticket
+//   useEffect(() => {
+//   if (editId !== undefined) {
+//     fetch(`/api/tickets/${editId}`, {
+//       method: 'PATCH',
+//       headers: {
+//         'Content-Type': 'application/json'
+//       },
+//       body: JSON.stringify({
+//         user_notes: editText
+//       })
+//     })
+//     .then(r => r.json())
+//     .then(data => {
+//       const old = tickets.find(x => x.id === data.id)
+//       const array = tickets.map(t => t)
+//       array.splice(array.findIndex(s => s === old), 1)
+//       array.push(data)
+//       const updateData = array.map(a => a)
+//       setTickets(updateData)
+//     })
+//   }
+//   }, [editId, editText, tickets])
+
 
   return (
     <div>
