@@ -13,12 +13,14 @@ const App = () => {
 const [user, setUser] = useState(null)
 const [userId, setUserId] = useState()
 const [concerts, setConcerts] = useState([])
+const [tickets, setTickets] = useState([])
 
 // Read current user
 useEffect(() => {
     fetch('/api/me').then((r) => {
       if (r.ok) {
         r.json().then((data) => {
+          console.log(data.tickets)
           setUser(data)
           setUserId(data.id)
         })

@@ -4,8 +4,8 @@ Rails.application.routes.draw do
   # # Leave this here to help deploy your app later!
   # get "*path", to: "fallback#index", constraints: ->(req) { !req.xhr? && req.format.html? }
   namespace :api do
-    resources :users
-    resources :concerts
+    resources :users, only: [:show, :create]
+    resources :concerts, only: [:index, :create]
     resources :tickets
 
     get "/me", to: "users#show"

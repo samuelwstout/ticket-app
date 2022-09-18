@@ -3,7 +3,7 @@ class Api::UsersController < ApplicationController
   # get '/api/me'
   def show
     if current_user
-      render json: current_user, status: :ok
+      render json: current_user, include: :tickets, status: :ok
     else
       render json: { error: 'No active session' }, status: :unauthorized
     end
@@ -11,7 +11,7 @@ class Api::UsersController < ApplicationController
 
   # post '/api/signup'
   def create
-    user = User.create(user_params)
+    user = User.create(params)
     if user.valid?
       session[:user_id] = user.id
       render json: user, status: :ok
@@ -22,7 +22,7 @@ class Api::UsersController < ApplicationController
 
   private
 
-  def user_params
+  def params
     params.permit(:username, :password, :password_confirmation)
   end
 
