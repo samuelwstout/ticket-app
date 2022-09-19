@@ -1,7 +1,7 @@
 class Api::TicketsController < ApplicationController
 
     def create
-        ticket = Ticket.create(user_id: params[:user_id], concert_id: params[:concert_id], title: params[:title], date: params[:date], description: params[:description], price: params[:price], user_notes: params[:user_notes])
+        ticket = Ticket.create(user_id: params[:user_id], concert_id: params[:concert_id], user_notes: params[:user_notes])
         render json: ticket
     end
 
