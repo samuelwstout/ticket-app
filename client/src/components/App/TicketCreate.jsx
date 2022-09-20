@@ -1,7 +1,7 @@
 import {useState} from 'react'
 import {useNavigate} from 'react-router-dom'
 
-const TicketCreate = ({concertId, userId, concerts }) => {
+const TicketCreate = ({concertId, userId, concerts, setTickets, tickets }) => {
 
 const [userNotes, setUserNotes] = useState('')
 const [ticketId, setTicketId] = useState(null)
@@ -33,6 +33,7 @@ const handleSubmit = (e) => {
             if (res.ok) {
                 res.json().then(data => {
                     setTicketId(data.id)
+                    setTickets([...tickets, data])
                 })
             }
         })
