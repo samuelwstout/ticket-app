@@ -1,7 +1,7 @@
 import {useState} from 'react'
 import {useNavigate} from 'react-router-dom'
 
-const TicketCreate = ({concertId, userId, concerts}) => {
+const TicketCreate = ({concertId, userId, concerts }) => {
 
 const [userNotes, setUserNotes] = useState('')
 const [ticketId, setTicketId] = useState(null)
