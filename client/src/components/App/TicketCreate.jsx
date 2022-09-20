@@ -17,7 +17,6 @@ const concert = filter[0]
 
 const handleSubmit = (e) => {
     e.preventDefault()
-    console.log(userNotes)
     // POST to /api/tickets
     fetch('/api/tickets', {
         method: 'POST',

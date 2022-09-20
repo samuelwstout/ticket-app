@@ -30,8 +30,6 @@ useEffect(() => {
     })
   }, [setUser, setUserId])
 
-  console.log(userNotes)
-
 
   return (
     <Router>
