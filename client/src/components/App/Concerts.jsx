@@ -2,11 +2,9 @@ import Navigation from "../Navigation"
 import React, { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 
-const Concerts = ({setUser, user, concerts, setConcertId}) => {
+const Concerts = ({setUser, user, concerts}) => {
 
 const navigate = useNavigate()
-
-console.log(concerts)
 
   return (
     <div>
@@ -19,8 +17,7 @@ console.log(concerts)
           <h2>{concert.description}</h2>
           <h2>Ticket price: ${concert.price}</h2>
           <p><button onClick={() => {
-            setConcertId(concert.id)
-            navigate('/create_ticket')
+            navigate(`/concert/${concert.id}/create_ticket`)
           }}>Buy ticket?</button></p>
         </div>
       )})}

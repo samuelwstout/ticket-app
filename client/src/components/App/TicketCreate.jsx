@@ -1,18 +1,20 @@
 import {useState} from 'react'
 import Navigation from '../Navigation'
+import {useParams} from 'react-router-dom'
 
-const TicketCreate = ({concertId, userId, concerts, setTickets, tickets, user, setUser }) => {
+
+const TicketCreate = ({userId, concerts, user, setUser, setTickets, tickets }) => {
 
 const [userNotes, setUserNotes] = useState('')
 const [ticketId, setTicketId] = useState(null)
 
-// When I reload
-console.log(concerts)
+const params = useParams()
+const concertId = Number(params.id)
 
-// const filter = concerts.filter(item => {
-//    return item.id === concertId
-// })
-// const concert = filter[0]
+const filter = concerts.filter(item => {
+    return item.id === concertId
+})
+const concert = filter[0]
 
 const handleSubmit = (e) => {
     e.preventDefault()
@@ -39,24 +41,27 @@ const handleSubmit = (e) => {
     setUserNotes('')
 }
 
-
   return (
     <div>
         <Navigation setUser={setUser} user={user} />
-        {/* <h1>Buy a ticket to {concert.title}</h1>
+        {concert &&
+        <div>
+        <h1>Buy a ticket to {concert.title}</h1>
         <h2>Date: {concert.date}</h2>
         <h2>Description: {concert.description}</h2>
-        <h2>${concert.price}</h2> */}
-        {/* <form onSubmit={handleSubmit}>
+        <h2>${concert.price}</h2>
+        <form onSubmit={handleSubmit}>
             <label htmlFor='user_notes'>You can leave a note if you'd like: </label>
             <input type='text' name='user_notes' value={userNotes} onChange={(e) => setUserNotes(e.target.value)} />
             <input type='submit' />
-        </form> */}
-        {/* {ticketId !== null &&
-        <div>
-            <h1>You bought ticket #{ticketId} to {concert.title}!</h1>
+        </form>
         </div>
-        } */}
+        }
+        {ticketId &&
+        <div>
+            <h1>You bought ticket #{ticketId}</h1>
+        </div>
+        }
     </div>
   )
 }

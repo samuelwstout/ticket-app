@@ -9,13 +9,11 @@ import MyTickets from './components/App/MyTickets';
 import TicketCreate from './components/App/TicketCreate';
 import TicketDetails from './components/App/TicketDetails';
 
-
 const App = () => {
 
 const [user, setUser] = useState(null)
 const [userId, setUserId] = useState(null)
 const [concerts, setConcerts] = useState([])
-const [concertId, setConcertId] = useState(null)
 const [userNotes, setUserNotes] = useState('')
 const [tickets, setTickets] = useState([])
 
@@ -45,10 +43,10 @@ useEffect(() => {
         <Route path="/" element={<LandingPage user={user} />} />
         <Route path="/login" element={<Login setUser={setUser} />} />
         <Route path="/signup" element={<Signup setUser={setUser} />} />
-        <Route path="/concerts" element={<Concerts setUser={setUser} user={user} concerts={concerts} setConcertId={setConcertId} />} />
+        <Route path="/concerts" element={<Concerts setUser={setUser} user={user} concerts={concerts} />} />
         <Route path="/create_concert" element={<CreateConcert setUser={setUser} user={user} setConcerts={setConcerts} concerts={concerts} />} />
         <Route path="/my_tickets" element={<MyTickets setUser={setUser} user={user} userId={userId} concerts={concerts} setUserNotes={setUserNotes} tickets={tickets} />} />
-        <Route path="/create_ticket" element={<TicketCreate concertId={concertId} userId={userId} concerts={concerts} setTickets={setTickets} tickets={tickets} user={user} setUser={setUser} />} />
+        <Route path="/concert/:id/create_ticket" element={<TicketCreate userId={userId} concerts={concerts} setTickets={setTickets} tickets={tickets} user={user} setUser={setUser} />} />
         <Route path="/ticket/:id" element={<TicketDetails concerts={concerts} userNotes={userNotes} setUserNotes={setUserNotes} tickets={tickets} setTickets={setTickets} user={user} setUser={setUser}/>} />
       </Routes>
     </Router>
