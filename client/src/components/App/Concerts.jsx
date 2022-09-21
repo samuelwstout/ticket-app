@@ -3,6 +3,7 @@ import React, { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 const Concerts = ({setUser, user, setConcerts, concerts, setConcertId, concertId}) => {
+  console.log(user)
   
   const navigate = useNavigate()
 
