@@ -2,17 +2,11 @@ import Navigation from "../Navigation"
 import React, { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 
-const Concerts = ({setUser, user, setConcerts, concerts, setConcertId, concertId}) => {
+const Concerts = ({setUser, user, concerts, setConcertId}) => {
 
-  
-  const navigate = useNavigate()
+const navigate = useNavigate()
 
-// Read all concerts
-useEffect(() => {
-    fetch('/api/concerts')
-      .then(r => r.json())
-      .then(data => setConcerts(data))
-  }, [setConcerts])
+console.log(concerts)
 
   return (
     <div>

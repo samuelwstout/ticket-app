@@ -32,13 +32,20 @@ useEffect(() => {
     })
   }, [setUser, setUserId])
 
+  // Read all concerts
+useEffect(() => {
+  fetch('/api/concerts')
+    .then(r => r.json())
+    .then(data => setConcerts(data))
+}, [setConcerts])
+
   return (
     <Router>
       <Routes>
         <Route path="/" element={<LandingPage user={user} />} />
         <Route path="/login" element={<Login setUser={setUser} />} />
         <Route path="/signup" element={<Signup setUser={setUser} />} />
-        <Route path="/concerts" element={<Concerts setUser={setUser} user={user} setConcerts={setConcerts} concerts={concerts} setConcertId={setConcertId} concertId={concertId} />} />
+        <Route path="/concerts" element={<Concerts setUser={setUser} user={user} concerts={concerts} setConcertId={setConcertId} />} />
         <Route path="/create_concert" element={<CreateConcert setUser={setUser} user={user} setConcerts={setConcerts} concerts={concerts} />} />
         <Route path="/my_tickets" element={<MyTickets setUser={setUser} user={user} userId={userId} concerts={concerts} setUserNotes={setUserNotes} tickets={tickets} />} />
         <Route path="/create_ticket" element={<TicketCreate concertId={concertId} userId={userId} concerts={concerts} setTickets={setTickets} tickets={tickets} user={user} setUser={setUser} />} />

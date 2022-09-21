@@ -3,7 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom'
 import Navigation from '../Navigation'
 
 const TicketDetails = ({concerts, userNotes, setUserNotes, tickets, setTickets, user, setUser}) => {
-
+console.log(concerts)
 const navigate = useNavigate()
 
 const [editClicked, setEditClicked] = useState(false)
@@ -21,8 +21,6 @@ const ticketId = Number(params.id)
 //     setConcert(concert)
 //     setUserNotes(ticket)
 //     }, [])
-
-
 
 const handleSubmit = (e) => {
     e.preventDefault()
