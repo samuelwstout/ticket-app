@@ -4,7 +4,6 @@ import Navigation from "../Navigation"
 
 const CreateConcert = ({setUser, user, setConcerts, concerts}) => {
 
-console.log(user)
 
 const [title, setTitle] = useState('')
 const [date, setDate] = useState('')

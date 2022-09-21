@@ -3,8 +3,6 @@ import { useNavigate } from "react-router-dom"
 
 const MyTickets = ({setUser, user, tickets}) => {
 
-console.log(user)
-
 const navigate = useNavigate()
 
   return (

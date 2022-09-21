@@ -3,13 +3,11 @@ import Navigation from '../Navigation'
 
 const TicketCreate = ({concertId, userId, concerts, setTickets, tickets, user, setUser }) => {
 
-console.log(user) 
-
 const [userNotes, setUserNotes] = useState('')
 const [ticketId, setTicketId] = useState(null)
 
-
-// I grab concert info from concertId
+// When I reload
+console.log(concerts)
 
 // const filter = concerts.filter(item => {
 //    return item.id === concertId
