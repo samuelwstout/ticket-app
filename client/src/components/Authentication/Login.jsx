@@ -7,6 +7,7 @@ const Login = ({setUser, setTickets, setUserId}) => {
 
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
+  const [error, setError] = useState('')
 
     // Login user
     const handleLogin = (event) => {
@@ -28,7 +29,7 @@ const Login = ({setUser, setTickets, setUserId}) => {
             })
           } else {
             res.json().then(errors => {
-              console.error(errors)
+              setError(errors.error)
             })
           }
         })
@@ -38,6 +39,9 @@ const Login = ({setUser, setTickets, setUserId}) => {
     <div>
       <form onSubmit={handleLogin}>
           <h1>Log In</h1>
+          {error !== '' && 
+          <h4>{error}</h4>
+        }
         <p>
           <label htmlFor="username">Username </label>
           <input

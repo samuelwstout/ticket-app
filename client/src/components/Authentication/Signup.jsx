@@ -8,6 +8,8 @@ const Signup = ({ setUser, setTickets, setUserId}) => {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [passwordConfirmation, setPasswordConfirmation] = useState('')
+  const [usernameError, setUsernameError] = useState('')
+  const [passwordError, setPasswordError] = useState('')
 
   // Create user
   const handleSubmit = (e) => {
@@ -34,7 +36,12 @@ const Signup = ({ setUser, setTickets, setUserId}) => {
           })
         } else {
           res.json().then(errors => {
-            console.error(errors)
+            if (errors.error.password) {
+              setPasswordError(`password ${errors.error.password[0]}`)
+            }
+            if (errors.error.username) {
+              setUsernameError(`username ${errors.error.username[0]}`)
+            }
           })
         }
       })
@@ -44,6 +51,12 @@ const Signup = ({ setUser, setTickets, setUserId}) => {
     <div>
       <form onSubmit={handleSubmit}>
           <h1>Sign up</h1>
+          {usernameError && 
+            <h3>{usernameError}</h3>
+          }
+          {passwordError && 
+            <h3>{passwordError}</h3>
+          }
           <p>
             <label htmlFor='username'>Username </label>
             <input type="text" name="username" value={username} onChange={(e) => setUsername(e.target.value)} />
