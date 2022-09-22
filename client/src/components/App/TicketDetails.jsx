@@ -8,6 +8,7 @@ const navigate = useNavigate()
 
 const [editClicked, setEditClicked] = useState(false)
 const [editText, setEditText] = useState('')
+const [deleteMessage, setDeleteMessage] = useState('')
 
 const params = useParams()
 const ticketId = Number(params.id)
@@ -63,16 +64,19 @@ const handleDelete = () => {
         const finalArray = tickets.filter(s => s.id !== data.id)
         const newTickets = finalArray.map(t => t)
         setTickets(newTickets)
-        alert(`Ticket #${params.id} Deleted!`)
+        setDeleteMessage(`Ticket #${params.id} Deleted!`)
         setTimeout(() => {
             navigate('/my_tickets')
-        }, 1000)
+        }, 2000)
     })
 }
 
   return (
     <div>
         <Navigation user={user} setUser={setUser} />
+        {deleteMessage && 
+            <h2>{deleteMessage}</h2>
+        }
         {concert &&
         <div>
             <h1>Ticket #{ticketId} for {concert.title}</h1>
