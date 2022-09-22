@@ -27,8 +27,7 @@ useEffect(() => {
     }
 }, [ticket])
 
-
-const handleSubmit = (e) => {
+const handleUpdate = (e) => {
     e.preventDefault()
     fetch(`/api/tickets/${params.id}`, {
         method: 'PATCH',
@@ -42,11 +41,17 @@ const handleSubmit = (e) => {
         .then(r => r.json())
         .then(data => {
             setUserNotes(data.user_notes)
+            const old = tickets.find(x => x.id === data.id)
+            const array = tickets.map(t => t)
+            array.splice(array.findIndex(s => s === old), 1)
+            array.push(data)
+            const updateTickets = array.map(t => t)
+            setTickets(updateTickets)
         })
     setEditText('')
 }
 
-const deleteRequest = () => {
+const handleDelete = () => {
     fetch(`/api/tickets/${params.id}`, {
         method: 'DELETE',
     })
@@ -78,13 +83,13 @@ const deleteRequest = () => {
                 <h2>${concert.price}</h2>
             </div>
             <button onClick={() => setEditClicked(true)}>Edit User Notes</button>
-            <button onClick={deleteRequest}>Delete ticket</button>
+            <button onClick={handleDelete}>Delete ticket</button>
         </div>
         }
         {editClicked && 
         <div>
             <h3>Edit note: '{userNotes}':</h3>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleUpdate}>
                 <input type='text' value={editText} onChange={(e) => setEditText(e.target.value)} />
                 <input type='submit' />
             </form>
