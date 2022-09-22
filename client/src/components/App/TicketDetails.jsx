@@ -52,7 +52,12 @@ const deleteRequest = () => {
     })
     .then(r => r.json())
     .then(data => {
-        console.log(data)
+        const ticketArray = tickets.map(t => t.id)
+        const index = ticketArray.indexOf(data.id)
+        ticketArray.splice(index, 1)
+        const finalArray = tickets.filter(s => s.id !== data.id)
+        const newTickets = finalArray.map(t => t)
+        setTickets(newTickets)
         alert(`Ticket #${params.id} Deleted!`)
         setTimeout(() => {
             navigate('/')

@@ -5,8 +5,6 @@ const Concerts = ({setUser, user, concerts}) => {
 
 const navigate = useNavigate()
 
-console.log(concerts)
-
 if (concerts !== []) {
 var concertList = concerts.map(item => {
   return (
