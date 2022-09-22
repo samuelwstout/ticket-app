@@ -1,7 +1,7 @@
 import {useState} from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 
-const Signup = ({ setUser, setTickets}) => {
+const Signup = ({ setUser, setTickets, setUserId}) => {
 
   const navigate = useNavigate()
 
@@ -28,6 +28,7 @@ const Signup = ({ setUser, setTickets}) => {
         if (res.ok) {
           res.json().then(user => {
             setUser(user)
+            setUserId(user.id)
             setTickets(user.tickets)
             navigate('/concerts')
           })

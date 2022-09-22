@@ -65,7 +65,7 @@ const handleDelete = () => {
         setTickets(newTickets)
         alert(`Ticket #${params.id} Deleted!`)
         setTimeout(() => {
-            navigate('/')
+            navigate('/my_tickets')
         }, 1000)
     })
 }
