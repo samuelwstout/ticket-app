@@ -1,40 +1,41 @@
 import {useState} from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 
-const Login = ({setUser}) => {
+const Login = ({setUser, setTickets}) => {
 
   const navigate = useNavigate()
 
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
 
-  // Login user
-  const handleSubmit = (event) => {
-    event.preventDefault()
-    fetch('/api/login', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({username, password})
-    })
-      .then(res => {
-        if (res.ok) {
-          res.json().then(user => {
-            setUser(user)
-            navigate('/concerts')
-          })
-        } else {
-          res.json().then(errors => {
-            console.error(errors)
-          })
-        }
+    // Login user
+    const handleLogin = (event) => {
+      event.preventDefault()
+      fetch('/api/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({username, password})
       })
-  }
+        .then(res => {
+          if (res.ok) {
+            res.json().then(user => {
+              setUser(user)
+              navigate('/concerts')
+              setTickets(user.tickets)
+            })
+          } else {
+            res.json().then(errors => {
+              console.error(errors)
+            })
+          }
+        })
+    }
 
   return (
     <div>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleLogin}>
           <h1>Log In</h1>
         <p>
           <label htmlFor="username">Username </label>

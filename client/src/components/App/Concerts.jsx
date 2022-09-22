@@ -1,26 +1,32 @@
 import Navigation from "../Navigation"
-import React, { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 const Concerts = ({setUser, user, concerts}) => {
 
 const navigate = useNavigate()
 
+console.log(concerts)
+
+if (concerts !== []) {
+var concertList = concerts.map(item => {
+  return (
+    <div key={item.id}>
+      <h2>{item.title}</h2>
+      <h2>{item.date}</h2>
+      <h2>{item.description}</h2>
+      <h2>Ticket price: ${item.price}</h2>
+      <p><button onClick={() => navigate(`/concert/${item.id}/create_ticket`)}>Buy ticket</button></p>
+    </div>
+  )
+})
+}
+
   return (
     <div>
       <Navigation setUser={setUser} user={user} />
-      {concerts.map(concert => {
-      return (
-        <div key={concert.id}>
-          <h2>{concert.title}</h2>
-          <h2>{concert.date}</h2>
-          <h2>{concert.description}</h2>
-          <h2>Ticket price: ${concert.price}</h2>
-          <p><button onClick={() => {
-            navigate(`/concert/${concert.id}/create_ticket`)
-          }}>Buy ticket?</button></p>
-        </div>
-      )})}
+      {concerts !== [] &&
+      concertList
+      }
     </div>
   )
 }

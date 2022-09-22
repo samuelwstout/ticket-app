@@ -1,9 +1,9 @@
-import {useState} from 'react'
+import {useEffect, useState} from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import Navigation from '../Navigation'
 
 const TicketDetails = ({concerts, userNotes, setUserNotes, tickets, setTickets, user, setUser}) => {
-console.log(concerts)
+
 const navigate = useNavigate()
 
 const [editClicked, setEditClicked] = useState(false)
@@ -20,6 +20,12 @@ if (ticket) {
    const solution = (concertarray[0])
    var concert = solution
 }
+
+useEffect(() => {
+    if (ticket) {
+    setUserNotes(ticket.user_notes)
+    }
+}, [ticket])
 
 
 const handleSubmit = (e) => {
