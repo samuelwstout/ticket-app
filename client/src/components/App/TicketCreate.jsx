@@ -41,6 +41,7 @@ const handleSubmit = (e) => {
     setUserNotes('')
 }
 
+
   return (
     <div>
         <Navigation setUser={setUser} user={user} />

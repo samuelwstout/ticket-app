@@ -1,5 +1,5 @@
 class Api::UsersController < ApplicationController
-  
+  skip_before_action :confirm_authentication
   # get '/api/me'
   def show
     if current_user
@@ -14,7 +14,7 @@ class Api::UsersController < ApplicationController
     user = User.create(user_params)
     if user.valid?
       session[:user_id] = user.id
-      render json: user, status: :ok
+      render json: user, include: :tickets, status: :ok
     else
       render json: { error: user.errors }, status: :unprocessable_entity
     end
