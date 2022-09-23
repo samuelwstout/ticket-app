@@ -1,73 +1,86 @@
-import {useState} from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import * as React from 'react';
+import Avatar from '@mui/material/Avatar';
+import Button from '@mui/material/Button';
+import CssBaseline from '@mui/material/CssBaseline';
+import TextField from '@mui/material/TextField';
+import Link from '@mui/material/Link';
+import Grid from '@mui/material/Grid';
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
+import Container from '@mui/material/Container';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 
-const Login = ({setUser, setTickets, setUserId}) => {
+const theme = createTheme();
 
-  const navigate = useNavigate()
+const Login = () => {
 
-  const [username, setUsername] = useState('')
-  const [password, setPassword] = useState('')
-  const [error, setError] = useState('')
-
-    // Login user
-    const handleLogin = (event) => {
-      event.preventDefault()
-      fetch('/api/login', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({username, password})
-      })
-        .then(res => {
-          if (res.ok) {
-            res.json().then(user => {
-              setUser(user)
-              setUserId(user.id)
-              navigate('/concerts')
-              setTickets(user.tickets)
-            })
-          } else {
-            res.json().then(errors => {
-              setError(errors.error)
-            })
-          }
-        })
-    }
-  
-  console.log('we are on the develop branch')
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const data = new FormData(event.currentTarget);
+    console.log({
+      email: data.get('email'),
+      password: data.get('password'),
+    });
+  };
 
   return (
-    <div>
-      <form onSubmit={handleLogin}>
-          <h1>Log In</h1>
-          {error !== '' && 
-          <h4>{error}</h4>
-        }
-        <p>
-          <label htmlFor="username">Username </label>
-          <input
-            type="text"
-            name="username"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-          />
-        </p>
-        <p>
-          <label htmlFor="password">Password </label>
-          <input
-            type="password"
-            name=""
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-        </p>
-          <input type='submit' value='Login' />
-        </form>
-
-        <h4>Don't have an account? <button><Link to="/signup">Sign up</Link></button></h4>
-    </div>
-  )
+    <ThemeProvider theme={theme}>
+      <Container component="main" maxWidth="xs">
+        <CssBaseline />
+        <Box
+          sx={{
+            marginTop: 8,
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+          }}
+        >
+          <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
+          </Avatar>
+          <Typography component="h1" variant="h5">
+            Sign in
+          </Typography>
+          <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+            <TextField
+              margin="normal"
+              required
+              fullWidth
+              id="username"
+              label="Username"
+              name="username"
+              autoComplete="username"
+              autoFocus
+            />
+            <TextField
+              margin="normal"
+              required
+              fullWidth
+              name="password"
+              label="Password"
+              type="password"
+              id="password"
+              autoComplete="current-password"
+            />
+            <Button
+              type="submit"
+              fullWidth
+              variant="contained"
+              sx={{ mt: 3, mb: 2 }}
+            >
+              Sign In
+            </Button>
+            <Grid container>
+              <Grid item>
+                <Link href="#" variant="body2">
+                  {"Don't have an account? Sign Up"}
+                </Link>
+              </Grid>
+            </Grid>
+          </Box>
+        </Box>
+      </Container>
+    </ThemeProvider>
+  );
 }
 
-export default Login
+export default Login;
