@@ -1,5 +1,7 @@
 import {useEffect} from 'react'
 import { Link, useNavigate } from 'react-router-dom'
+import ButtonGroup from '@mui/material/ButtonGroup';
+import Button from '@mui/material/Button';
 
 const LandingPage = ({user}) => {
 
@@ -15,8 +17,14 @@ const LandingPage = ({user}) => {
     <div>
         <h1>Phase 4 Project</h1>
         <h3>a concert ticket app</h3>
-        <button><Link to="/login">Login</Link></button>
-        <button><Link to="/signup">Sign up</Link></button>
+        <ButtonGroup
+          disableElevation
+          variant="contained"
+          aria-label="Disabled elevation buttons"
+        >
+          <Button><Link to="/login">Login</Link></Button>
+          <Button><Link to="/signup">Sign up</Link></Button>
+        </ButtonGroup>
     </div>
   )
 }
