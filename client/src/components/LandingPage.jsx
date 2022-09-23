@@ -12,7 +12,7 @@ const theme = createTheme();
 
 const LandingPage = ({user}) => {
 
-  const navigate = useNavigate();
+const navigate = useNavigate();
 
   useEffect(() => {
     if (user) {

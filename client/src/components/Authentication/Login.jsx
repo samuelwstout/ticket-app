@@ -1,4 +1,5 @@
-import * as React from 'react';
+import {useState} from 'react';
+import {useNavigate} from 'react-router-dom';
 import Avatar from '@mui/material/Avatar'; 
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -10,18 +11,42 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
+
 const theme = createTheme();
 
-const Login = () => {
+const Login = ({setUser, setTickets, setUserId}) => {
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
-  };
+  const navigate = useNavigate()
+
+  const [username, setUsername] = useState('')
+  const [password, setPassword] = useState('')
+  const [error, setError] = useState('')
+
+    // Login user
+    const handleSubmit = (e) => {
+      e.preventDefault()
+      fetch('/api/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({username, password})
+      })
+        .then(res => {
+          if (res.ok) {
+            res.json().then(user => {
+              setUser(user)
+              setUserId(user.id)
+              navigate('/concerts')
+              setTickets(user.tickets)
+            })
+          } else {
+            res.json().then(errors => {
+              setError(errors.error)
+            })
+          }
+        })
+    }
 
   return (
     <ThemeProvider theme={theme}>
@@ -40,6 +65,11 @@ const Login = () => {
           <Typography component="h1" variant="h5">
             Sign in
           </Typography>
+          {error && 
+            <Typography variant="subtitle1" color="error.dark">
+            {error}
+          </Typography>
+          }
           <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
             <TextField
               margin="normal"
@@ -50,6 +80,7 @@ const Login = () => {
               name="username"
               autoComplete="username"
               autoFocus
+              onChange={(e) => setUsername(e.target.value)}
             />
             <TextField
               margin="normal"
@@ -60,6 +91,7 @@ const Login = () => {
               type="password"
               id="password"
               autoComplete="current-password"
+              onChange={(e) => setPassword(e.target.value)}
             />
             <Button
               type="submit"
@@ -71,7 +103,7 @@ const Login = () => {
             </Button>
             <Grid container>
               <Grid item>
-                <Link href="#" variant="body2">
+                <Link onClick={() => navigate('/signup')} variant="body2">
                   {"Don't have an account? Sign Up"}
                 </Link>
               </Grid>
