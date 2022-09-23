@@ -118,7 +118,7 @@ const Signup = ({ setUser, setTickets, setUserId}) => {
             >
               Sign Up
             </Button>
-            <Grid container justifyContent="flex-end">
+            <Grid container justifyContent="center">
               <Grid item>
                 <Link onClick={() => navigate('/login')} variant="body2">
                   Already have an account? Sign in

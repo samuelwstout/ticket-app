@@ -101,7 +101,7 @@ const Login = ({setUser, setTickets, setUserId}) => {
             >
               Sign In
             </Button>
-            <Grid container>
+            <Grid container justifyContent="center">
               <Grid item>
                 <Link onClick={() => navigate('/signup')} variant="body2">
                   {"Don't have an account? Sign Up"}
