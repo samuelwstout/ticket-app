@@ -1,4 +1,5 @@
-import * as React from 'react';
+import {useState} from 'react';
+import {useNavigate} from 'react-router-dom';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -12,14 +13,46 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 const theme = createTheme();
 
-export default function SignUp() {
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
+const Signup = ({ setUser, setTickets, setUserId}) => {
+
+  const navigate = useNavigate()
+
+  const [username, setUsername] = useState('')
+  const [password, setPassword] = useState('')
+  const [usernameError, setUsernameError] = useState('')
+  const [passwordError, setPasswordError] = useState('')
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    fetch('/api/signup', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        username,
+        password,
+      })
+    })
+      .then(res => {
+        if (res.ok) {
+          res.json().then(user => {
+            setUser(user)
+            setUserId(user.id)
+            setTickets(user.tickets)
+            navigate('/concerts')
+          })
+        } else {
+          res.json().then(errors => {
+            if (errors.error.password) {
+              setPasswordError(`password ${errors.error.password[0]}`)
+            }
+            if (errors.error.username) {
+              setUsernameError(`username ${errors.error.username[0]}`)
+            }
+          })
+        }
+      })
   };
 
   return (
@@ -39,6 +72,16 @@ export default function SignUp() {
           <Typography component="h1" variant="h5">
             Sign up
           </Typography>
+          {usernameError && 
+            <Typography variant="subtitle1" color="error.dark">
+              {usernameError}
+            </Typography>
+          }
+          {passwordError && 
+            <Typography variant="subtitle1" color="error.dark">
+              {passwordError}
+            </Typography>
+          }
           <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
             <Grid container spacing={2}>
               <Grid item xs={12}>
@@ -49,6 +92,8 @@ export default function SignUp() {
                   label="Username"
                   name="username"
                   autoComplete="username"
+                  value={username}
+                  onChange={(e) => setUsername(e.target.value)}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -60,6 +105,8 @@ export default function SignUp() {
                   type="password"
                   id="password"
                   autoComplete="new-password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
                 />
               </Grid>
             </Grid>
@@ -73,7 +120,7 @@ export default function SignUp() {
             </Button>
             <Grid container justifyContent="flex-end">
               <Grid item>
-                <Link href="#" variant="body2">
+                <Link onClick={() => navigate('/login')} variant="body2">
                   Already have an account? Sign in
                 </Link>
               </Grid>
@@ -84,3 +131,5 @@ export default function SignUp() {
     </ThemeProvider>
   );
 }
+
+export default Signup
