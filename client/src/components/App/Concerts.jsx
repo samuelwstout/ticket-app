@@ -22,7 +22,6 @@ const navigate = useNavigate()
     <Navigation setUser={setUser} user={user} />
     <ThemeProvider theme={theme}>
       <main>
-        {/* Hero unit */}
         <Box
           sx={{
             bgcolor: 'background.paper',
