@@ -12,7 +12,7 @@ const theme = createTheme();
 const CreateConcert = ({setUser, user, setConcerts, concerts}) => {
 
 const [title, setTitle] = useState('')
-const [date, setDate] = useState('');
+const [date, setDate] = useState('')
 const [description, setDescription] = useState('')
 const [price, setPrice] = useState('')
 
@@ -84,13 +84,14 @@ const handleSubmit = (e) => {
               value={title}
               onChange={(e) => setTitle(e.target.value)}
             />
-             <LocalizationProvider dateAdapter={AdapterDayjs}>
-              <DatePicker
-               label="Date"
-               value={date}
-               onChange={(e) => setDate(e.target.value)}
-              />
-             </LocalizationProvider>
+             <TextField
+             name="Date"
+             label="Date"
+             InputLabelProps={{ shrink: true, required: true }}
+             type="date"
+             value={date}
+             onChange={(e) => setDate(e.target.value)}
+             />
              <TextField
               margin="normal"
               required
