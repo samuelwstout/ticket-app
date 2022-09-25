@@ -40,6 +40,7 @@ useEffect(() => {
   }
 }, [setConcerts, user])
 
+console.log('hey')
 
   return (
     <Router>

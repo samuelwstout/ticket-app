@@ -5,17 +5,14 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
-import { Dayjs } from 'dayjs';
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import React from 'react';
 
 const theme = createTheme();
 
 const CreateConcert = ({setUser, user, setConcerts, concerts}) => {
 
 const [title, setTitle] = useState('')
-const [date, setDate] = useState<Dayjs | null>(null);
+const [date, setDate] = useState('');
 const [description, setDescription] = useState('')
 const [price, setPrice] = useState('')
 
@@ -39,7 +36,7 @@ const handleSubmit = (e) => {
         res.json().then(data => {
           setConcerts([...concerts, data])
           setTitle('')
-          setDate('')
+          setDate(null)
           setDescription('')
           setPrice('')
         })
@@ -92,7 +89,6 @@ const handleSubmit = (e) => {
                label="Date"
                value={date}
                onChange={(e) => setDate(e.target.value)}
-               renderInput={(params) => <TextField {...params} />}
               />
              </LocalizationProvider>
              <TextField
