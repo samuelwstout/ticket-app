@@ -129,7 +129,7 @@ const handleDelete = () => {
                 <Typography variant="h5" align="center" color="text.secondary">
                 Notes: {userNotes}
                 </Typography>
-                <Typography align="center" sx={{ mt: 2 }}>
+                <Typography sx={{ mt: 2 }} display="flex" justifyContent="center" gap={.25}>
                     <Button variant="contained" onClick={() => setEditClicked(true)}>Edit User Notes</Button>
                     <Button variant="contained" onClick={handleDelete}>Delete Ticket</Button>
                 </Typography>
@@ -173,29 +173,3 @@ const handleDelete = () => {
 }
 
 export default TicketDetails
-
-// {deleteMessage && 
-//     <h2>{deleteMessage}</h2>
-// }
-// {concert &&
-// <div>
-//     <h1>Ticket #{ticketId} for {concert.title}</h1>
-//     <h2>Notes: {userNotes}</h2>
-//     <div>
-//         <h2>{concert.date}</h2>
-//         <h2>{concert.description}</h2>
-//         <h2>${concert.price}</h2>
-//     </div>
-//     <button onClick={() => setEditClicked(true)}>Edit User Notes</button>
-//     <button onClick={handleDelete}>Delete ticket</button>
-// </div>
-// }
-// {editClicked && 
-// <div>
-//     <h3>Edit note: '{userNotes}':</h3>
-//     <form onSubmit={handleUpdate}>
-//         <input type='text' value={editText} onChange={(e) => setEditText(e.target.value)} />
-//         <input type='submit' />
-//     </form>
-// </div>
-// }

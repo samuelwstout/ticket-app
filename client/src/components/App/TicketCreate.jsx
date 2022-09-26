@@ -125,6 +125,7 @@ const handleSubmit = (e) => {
                 align="center"
                 color="text.primary"
                 gutterBottom
+                sx={{ mt: 3 }}
               >
                 You bought ticket #{ticketId}
               </Typography>
