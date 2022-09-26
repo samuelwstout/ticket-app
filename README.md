@@ -12,19 +12,19 @@ This is a ticket app in which users can create events and buy tickets to them. A
 * Uses a Rails API backend with a React frontend.
 * Has three models on the backend: User, Concert, and Ticket
 * This is a reciprocal many to many relationship, in which:
-..* Users have many tickets
-..* Users have many concerts through tickets
-..* Concerts have many tickets
-..* Concerts have many users through tickets
-..* Tickets belong to User
-..* Tickets belong to Concert
+* Users have many tickets
+* Users have many concerts through tickets
+* Concerts have many tickets
+* Concerts have many users through tickets
+* Tickets belong to User
+* Tickets belong to Concert
 * There are full CRUD actions for the Ticket resource
 * User and Concert resources both have create and read actions
 * 8 client-side routes using React Router
 * Implements authentication/authorization, including password protection with BCrypt. A user is able to:
-..* sign up with a new user account
-..* log in to the site with a secure password and stay logged in via user ID in the session hash
-..* log out of the site
+* sign up with a new user account
+* log in to the site with a secure password and stay logged in via user ID in the session hash
+* log out of the site
 
 ## For setting up, I used a project template provided by Flatiron School.
 
