@@ -11,7 +11,13 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Navigation from "../Navigation";
 
-const theme = createTheme();
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: '#0a1b2f'
+    }
+  }
+});
 
 const Concerts = ({setUser, user, concerts}) => {
 

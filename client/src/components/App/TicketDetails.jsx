@@ -8,7 +8,13 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 
-const theme = createTheme();
+const theme = createTheme({
+    palette: {
+      primary: {
+        main: '#0a1b2f'
+      }
+    }
+  });
 
 const TicketDetails = ({concerts, userNotes, setUserNotes, tickets, setTickets, user, setUser}) => {
 

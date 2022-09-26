@@ -8,8 +8,13 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
-const theme = createTheme();
-
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: '#0a1b2f'
+    }
+  }
+});
 const LandingPage = ({user}) => {
 
 const navigate = useNavigate();
@@ -23,7 +28,7 @@ const navigate = useNavigate();
   return (
     <div>
       <ThemeProvider theme={theme}>
-      <Container component="main" maxWidth="xs">
+      <Container component="main" maxWidth="xs" >
       <CssBaseline />
       <Box
           sx={{

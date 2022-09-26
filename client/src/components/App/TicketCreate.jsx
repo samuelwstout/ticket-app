@@ -8,7 +8,13 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 
-const theme = createTheme();
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: '#0a1b2f'
+    }
+  }
+});
 
 const TicketCreate = ({userId, concerts, user, setUser, setTickets, tickets }) => {
 
@@ -103,6 +109,7 @@ const handleSubmit = (e) => {
             <Typography align="center">
             <Button
               type="submit"
+              color="primary"
               variant="contained"
               sx={{ mt: 3 }}
             >

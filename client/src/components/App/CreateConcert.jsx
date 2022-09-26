@@ -7,7 +7,13 @@ import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import React from 'react';
 
-const theme = createTheme();
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: '#0a1b2f'
+    }
+  }
+});
 
 const CreateConcert = ({setUser, user, setConcerts, concerts}) => {
 
@@ -120,6 +126,7 @@ const handleSubmit = (e) => {
             <Button
               type="submit"
               variant="contained"
+              color="primary"
               sx={{ mt: 3, mb: 2 }}
             >
               Submit
@@ -134,23 +141,3 @@ const handleSubmit = (e) => {
 }
 
 export default CreateConcert
-
-{/* <form onSubmit={handleSubmit}>
-<p>
-  <label htmlFor='title'>Title </label>
-  <input type='text' name='title' value={title} onChange={(e) => setTitle(e.target.value)} />
-</p>
-<p>
-  <label htmlFor='date'>Date </label>
-  <input type='date' name='date' value={date} onChange={(e) => setDate(e.target.value)} />
-</p>
-<p>
-  <label htmlFor='description'>Description </label>
-  <input type='text' name='description' value={description} onChange={(e) => setDescription(e.target.value)} />
-</p>
-<p>
-  <label htmlFor='price'>Price </label>
-  <input type='number' name='price' value={price} onChange={(e) => setPrice(e.target.value)} />
-</p>
-<input type='submit'></input>
-</form> */}

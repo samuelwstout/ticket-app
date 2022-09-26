@@ -7,7 +7,13 @@ import Typography from '@mui/material/Typography';
 import Link from '@mui/material/Link';
 import Box from '@mui/material/Box';
 
-const theme = createTheme();
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: '#0a1b2f'
+    }
+  }
+});
 
 const Navigation = ({setUser, user}) => {
 
@@ -26,15 +32,14 @@ const handleLogout = () => {
     })
   }
 
-  
+
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <AppBar 
       position="static"
-      color="default"
       elevation={0}
-      sx={{ borderBottom: (theme) => `1px solid ${theme.palette.divider}`}}
+      sx={{ borderBottom: (theme) => `1px solid ${theme.palette.main}`}}
       >
         <Toolbar sx={{ flexWrap: 'wrap' }}>
           {user &&
@@ -53,7 +58,7 @@ const handleLogout = () => {
           >
           <Link
           variant="button"
-          color="text.primary"
+          color="inherit"
           onClick={() => navigate('/concerts')}
           sx={{ my: 1, mx: 1.5 }}
           >
@@ -61,7 +66,7 @@ const handleLogout = () => {
           </Link>
           <Link
               variant="button"
-              color="text.primary"
+              color="inherit"
               onClick={() => navigate('/create_concert')}
               sx={{ my: 1, mx: 1.5 }}
             >
@@ -69,7 +74,7 @@ const handleLogout = () => {
             </Link>
             <Link
               variant="button"
-              color="text.primary"
+              color="inherit"
               onClick={() => navigate('/my_tickets')}
               sx={{ my: 1, mx: 1.5 }}
             >
@@ -77,7 +82,7 @@ const handleLogout = () => {
             </Link>
             <Link
               variant="button"
-              color="text.primary"
+              color="inherit"
               onClick={handleLogout}
               sx={{ my: 1, mx: 1.5 }}
             >
@@ -92,13 +97,3 @@ const handleLogout = () => {
 }
 
 export default Navigation
-
-{/* <div>
-      { user &&
-            <h1>{user.username}</h1>
-        }
-        <li><Link to="/concerts">Concerts</Link></li>
-        <li><Link to="/create_concert">Create Concert</Link></li>
-        <li><Link to="/my_tickets">My Tickets</Link></li>
-        <p><button onClick={handleLogout}>Logout</button></p>
-    </div> */}

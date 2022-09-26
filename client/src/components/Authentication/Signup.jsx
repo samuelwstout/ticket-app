@@ -11,7 +11,13 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
-const theme = createTheme();
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: '#0a1b2f'
+    }
+  }
+});
 
 const Signup = ({ setUser, setTickets, setUserId}) => {
 
@@ -67,7 +73,7 @@ const Signup = ({ setUser, setTickets, setUserId}) => {
             alignItems: 'center',
           }}
         >
-          <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
+          <Avatar sx={{ m: 1, bgcolor: 'primary.main' }}>
           </Avatar>
           <Typography component="h1" variant="h5">
             Sign up
