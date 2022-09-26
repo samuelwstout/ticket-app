@@ -15,6 +15,7 @@ const theme = createTheme({
     }
   }
 });
+
 const LandingPage = ({user}) => {
 
 const navigate = useNavigate();
