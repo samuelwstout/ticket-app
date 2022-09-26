@@ -65,16 +65,4 @@ const navigate = useNavigate()
   )
 }
 
-{/* <h1>Tickets here</h1>
-{tickets.map(item => {
-  return (
-    <div key={item.id}>
-      <h2>Ticket #{item.id}</h2>
-      <button onClick={() => {
-        return navigate(`/ticket/${item.id}`)
-      }}>Ticket details</button>
-    </div>
-  )
-})} */}
-
 export default MyTickets

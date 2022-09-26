@@ -20,7 +20,7 @@ const concertId = Number(params.id)
 
 const filter = concerts.filter(item => {
     return item.id === concertId
-})
+})  
 const concert = filter[0]
 
 const handleSubmit = (e) => {
@@ -100,14 +100,15 @@ const handleSubmit = (e) => {
               value={userNotes}
               onChange={(e) => setUserNotes(e.target.value)}
             />
+            <Typography align="center">
             <Button
               type="submit"
               variant="contained"
-              fullWidth
               sx={{ mt: 3 }}
             >
               Submit
             </Button>
+            </Typography>
             </Box> 
             </Box>
             {ticketId && 

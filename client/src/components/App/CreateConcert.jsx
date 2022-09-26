@@ -116,14 +116,15 @@ const handleSubmit = (e) => {
               value={price}
               onChange={(e) => setPrice(e.target.value)}
             />
+            <Typography align="center">
             <Button
               type="submit"
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
-              fullWidth
             >
               Submit
             </Button>
+            </Typography>
           </Box>
       </Box>
       </main>
