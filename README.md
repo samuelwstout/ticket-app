@@ -8,6 +8,11 @@ This is a ticket app in which users can create events and buy tickets to them. A
 
 ![gif](https://user-images.githubusercontent.com/63696062/192357209-47cf877d-1465-4bf4-a664-43fbe4ec48a4.gif)
 
+## Requirements
+* Ruby 2.7.4
+* NodeJS (v16), and npm
+* Postgresql
+
 ## Primary features
 * Uses a Rails API backend with a React frontend.
 * Has three models on the backend: User, Concert, and Ticket
