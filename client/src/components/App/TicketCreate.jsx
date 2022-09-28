@@ -1,4 +1,5 @@
-import {useState} from 'react'
+import {useState, useEffect} from 'react'
+import { useNavigate } from "react-router-dom";
 import Navigation from '../Navigation'
 import {useParams} from 'react-router-dom'
 import Box from '@mui/material/Box';
@@ -17,6 +18,14 @@ const theme = createTheme({
 });
 
 const TicketCreate = ({userId, concerts, user, setUser, setTickets, tickets }) => {
+
+const navigate = useNavigate()
+
+useEffect(() => {
+  if (user === null) {
+    navigate('/')
+  }
+}, [])
 
 const [userNotes, setUserNotes] = useState('')
 const [ticketId, setTicketId] = useState(null)

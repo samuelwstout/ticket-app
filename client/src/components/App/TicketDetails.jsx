@@ -20,6 +20,13 @@ const TicketDetails = ({concerts, userNotes, setUserNotes, tickets, setTickets, 
 
 const navigate = useNavigate()
 
+useEffect(() => {
+    if (user === null) {
+        navigate('/')
+      }
+}, [])
+
+
 const [editClicked, setEditClicked] = useState(false)
 const [editText, setEditText] = useState('')
 const [deleteMessage, setDeleteMessage] = useState('')

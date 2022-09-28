@@ -27,8 +27,10 @@ useEffect(() => {
           setUserId(data.id)
           setTickets(data.tickets)
         })
+      } else {
+        setUser(null)
       }
-    })
+    }) 
   }, [])
 
   // Read all concerts

@@ -1,4 +1,5 @@
-import {useState} from 'react'
+import {useState, useEffect} from 'react'
+import { useNavigate } from 'react-router-dom'
 import Navigation from "../Navigation"
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Box from '@mui/material/Box';
@@ -16,6 +17,14 @@ const theme = createTheme({
 });
 
 const CreateConcert = ({setUser, user, setConcerts, concerts}) => {
+
+const navigate = useNavigate()
+
+useEffect(() => {
+  if (user === null) {
+    navigate('/')
+  }
+}, [])
 
 const [title, setTitle] = useState('')
 const [date, setDate] = useState('')

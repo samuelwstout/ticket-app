@@ -1,5 +1,6 @@
-import Navigation from "../Navigation"
-import { useNavigate } from "react-router-dom"
+import {useEffect} from 'react';
+import Navigation from "../Navigation";
+import { useNavigate } from "react-router-dom";
 import * as React from 'react';
 import Button from '@mui/material/Button';
 import Card from '@mui/material/Card';
@@ -20,8 +21,14 @@ const theme = createTheme({
 });
 
 const MyTickets = ({setUser, user, tickets}) => {
-console.log(tickets)
+
 const navigate = useNavigate()
+
+useEffect(() => {
+  if (user === null) {
+    navigate('/')
+  }
+}, [])
 
   return (
     <div>

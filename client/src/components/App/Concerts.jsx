@@ -1,4 +1,4 @@
-import * as React from 'react';
+import {useEffect} from 'react';
 import { useNavigate } from 'react-router-dom'
 import Button from '@mui/material/Button';
 import Card from '@mui/material/Card';
@@ -22,6 +22,12 @@ const theme = createTheme({
 const Concerts = ({setUser, user, concerts}) => {
 
 const navigate = useNavigate()
+
+useEffect(() => {
+  if (user === null) {
+    navigate('/')
+  }
+}, [])
 
   return (
     <div>
