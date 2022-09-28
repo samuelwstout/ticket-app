@@ -1,6 +1,7 @@
 class Api::SessionsController < ApplicationController
   skip_before_action :confirm_authentication
-
+  before_action :confirm_authentication, only: [:destroy]
+  
   # post '/login'
   def create
     user = User.find_by_username(params[:username])

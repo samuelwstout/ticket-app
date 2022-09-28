@@ -1,5 +1,6 @@
 class Api::UsersController < ApplicationController
-  skip_before_action :confirm_authentication
+  before_action :confirm_authentication
+  skip_before_action :confirm_authentication, only: [:create, :user_params]
   # get '/api/me'
   def show
     if current_user

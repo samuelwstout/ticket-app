@@ -1,4 +1,5 @@
 class Api::TicketsController < ApplicationController
+    before_action :confirm_authentication
 
     def create
         ticket = Ticket.create(user_id: params[:user_id], concert_id: params[:concert_id], user_notes: params[:user_notes])

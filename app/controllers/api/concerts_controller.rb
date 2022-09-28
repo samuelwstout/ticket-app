@@ -1,4 +1,6 @@
 class Api::ConcertsController < ApplicationController
+    before_action :confirm_authentication
+
     def index
         concerts = Concert.all
         render json: concerts
