@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   namespace :api do
     resources :users, only: [:show, :create]
     resources :concerts, only: [:index, :create]
-    resources :tickets
+    resources :tickets, only: [:create, :update, :destroy]
 
     get "/me", to: "users#show"
     post "/signup", to: "users#create"
