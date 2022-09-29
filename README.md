@@ -17,7 +17,7 @@ This is a ticket app in which users can create events and buy tickets to them. A
 
 https://github.com/learn-co-curriculum/project-template-react-rails-api
 
-* I've also included installation instructions from this README below.
+I've taken the installation instructions from this project template below.
 
 ## Installation instructions
 ### Install Ruby
