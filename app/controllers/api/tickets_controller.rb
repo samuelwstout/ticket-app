@@ -6,8 +6,11 @@ class Api::TicketsController < ApplicationController
         render json: ticket
     end
 
+    # The issue is that any authenticated user can update and delete these. How do I verify that the ticket belongs to the user?
+    
     def update
-        ticket = Ticket.find_by(id: params[:id])
+        ticket = current_user.tickets.find_by(id: params[:id])
+        byebug
         if ticket
             ticket.update(user_notes: params[:user_notes])
             render json: ticket
@@ -17,7 +20,7 @@ class Api::TicketsController < ApplicationController
     end
 
     def destroy
-        ticket = Ticket.find_by(id: params[:id])
+        ticket = current_user.tickets.find_by(id: params[:id])
         if ticket
             ticket.destroy
             render json: ticket
