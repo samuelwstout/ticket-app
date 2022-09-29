@@ -14,6 +14,7 @@ This is a ticket app in which users can create events and buy tickets to them. A
 * Postgresql
 
 ## Primary features
+```
 * Uses a Rails API backend with a React frontend.
 * Has three models on the backend: User, Concert, and Ticket
 * This is a reciprocal many to many relationship, in which:
@@ -30,6 +31,8 @@ This is a ticket app in which users can create events and buy tickets to them. A
 * sign up with a new user account
 * log in to the site with a secure password and stay logged in via user ID in the session hash
 * log out of the site
+
+```
 
 ## For setting up, I used a project template provided by Flatiron School.
 
