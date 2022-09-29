@@ -10,7 +10,6 @@ class Api::TicketsController < ApplicationController
     
     def update
         ticket = current_user.tickets.find_by(id: params[:id])
-        byebug
         if ticket
             ticket.update(user_notes: params[:user_notes])
             render json: ticket
