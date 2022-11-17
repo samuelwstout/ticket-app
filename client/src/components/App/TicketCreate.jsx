@@ -56,7 +56,6 @@ const TicketCreate = ({userId, concerts, user, setUser, setTickets, tickets }) =
   return (
     <>
         <Navigation setUser={setUser} user={user} />
-        <ThemeProvider theme={theme}>
             <main>
             <Box
               sx={{
@@ -129,7 +128,6 @@ const TicketCreate = ({userId, concerts, user, setUser, setTickets, tickets }) =
               </Typography>
             }
             </main>
-        </ThemeProvider>
     </>
   )
 }
