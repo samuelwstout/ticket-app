@@ -1,15 +1,10 @@
 import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
-import ButtonGroup from '@mui/material/ButtonGroup'
-import Button from '@mui/material/Button'
-import Container from '@mui/material/Container'
-import CssBaseline from '@mui/material/CssBaseline'
-import Box from '@mui/material/Box'
-import Typography from '@mui/material/Typography'
+import { ButtonGroup, Button, Container, CssBaseline, Box, Typography } from '@mui/material'
 
 const LandingPage = ({ user }) => {
 
-const navigate = useNavigate()
+  const navigate = useNavigate()
 
   useEffect(() => {
     if (user) {

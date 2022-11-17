@@ -1,14 +1,7 @@
 import { useEffect } from 'react'
 import Navigation from '../Navigation'
 import { useNavigate } from 'react-router-dom'
-import Button from '@mui/material/Button'
-import Card from '@mui/material/Card'
-import CardActions from '@mui/material/CardActions'
-import CardContent from '@mui/material/CardContent'
-import Grid from '@mui/material/Grid'
-import Box from '@mui/material/Box'
-import Typography from '@mui/material/Typography'
-import Container from '@mui/material/Container'
+import { Button, Card, CardActions, CardContent, Grid, Box, Typography, Container } from '@mui/material'
 
 const MyTickets = ({setUser, user, tickets}) => {
 

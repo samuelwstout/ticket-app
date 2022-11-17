@@ -1,11 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import Navigation from '../Navigation'
-import Box from '@mui/material/Box'
-import Typography from '@mui/material/Typography'
-import Container from '@mui/material/Container'
-import TextField from '@mui/material/TextField'
-import Button from '@mui/material/Button'
+import { Box, Typography, Container, TextField, Button } from '@mui/material'
 
 const TicketDetails = ({ concerts, userNotes, setUserNotes, tickets, setTickets, user, setUser }) => {
 

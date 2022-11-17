@@ -1,46 +1,44 @@
-import {useState, useEffect} from 'react';
-import './App.css';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Login from './components/Authentication/Login';
-import Signup from './components/Authentication/Signup';
-import LandingPage from './components/LandingPage';
-import Concerts from './components/App/Concerts';
-import CreateConcert from './components/App/CreateConcert';
-import MyTickets from './components/App/MyTickets';
-import TicketCreate from './components/App/TicketCreate';
-import TicketDetails from './components/App/TicketDetails';
+import { useState, useEffect } from 'react'
+import './App.css'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import Login from './components/Authentication/Login'
+import Signup from './components/Authentication/Signup'
+import LandingPage from './components/LandingPage'
+import Concerts from './components/App/Concerts'
+import CreateConcert from './components/App/CreateConcert'
+import MyTickets from './components/App/MyTickets'
+import TicketCreate from './components/App/TicketCreate'
+import TicketDetails from './components/App/TicketDetails'
 
 const App = () => {
 
-const [user, setUser] = useState(null)
-const [userId, setUserId] = useState(null)
-const [concerts, setConcerts] = useState([])
-const [userNotes, setUserNotes] = useState('')
-const [tickets, setTickets] = useState([])
+  const [user, setUser] = useState(null)
+  const [userId, setUserId] = useState(null)
+  const [concerts, setConcerts] = useState([])
+  const [userNotes, setUserNotes] = useState('')
+  const [tickets, setTickets] = useState([])
 
-// Read current user
-useEffect(() => {
-    fetch('/api/me').then((r) => {
-      if (r.ok) {
-        r.json().then((data) => {
-          setUser(data)
-          setUserId(data.id)
-          setTickets(data.tickets)
-        })
-      } else {
-        setUser(null)
-      }
-    }) 
-  }, [])
+  useEffect(() => {
+      fetch('/api/me').then((r) => {
+        if (r.ok) {
+          r.json().then((data) => {
+            setUser(data)
+            setUserId(data.id)
+            setTickets(data.tickets)
+          })
+        } else {
+          setUser(null)
+        }
+      }) 
+    }, [])
 
-  // Read all concerts
-useEffect(() => {
-  if (user) {
-  fetch('/api/concerts')
-    .then(r => r.json())
-    .then(data => setConcerts(data))
-  }
-}, [setConcerts, user])
+  useEffect(() => {
+    if (user) {
+    fetch('/api/concerts')
+      .then(r => r.json())
+      .then(data => setConcerts(data))
+    }
+  }, [setConcerts, user])
 
   return (
     <Router>
@@ -56,7 +54,6 @@ useEffect(() => {
       </Routes>
     </Router>
   )
-
 }
 
-export default App;
+export default App

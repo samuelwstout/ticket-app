@@ -1,10 +1,5 @@
 import { useNavigate } from 'react-router-dom'
-import AppBar from '@mui/material/AppBar'
-import CssBaseline from '@mui/material/CssBaseline'
-import Toolbar from '@mui/material/Toolbar'
-import Typography from '@mui/material/Typography'
-import Link from '@mui/material/Link'
-import Box from '@mui/material/Box'
+import { AppBar, CssBaseline, Toolbar, Typography, Link, Box } from '@mui/material'
 
 const Navigation = ({setUser, user}) => {
 
