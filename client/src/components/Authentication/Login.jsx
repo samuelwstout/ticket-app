@@ -1,26 +1,16 @@
-import {useState} from 'react';
-import {useNavigate} from 'react-router-dom';
-import Avatar from '@mui/material/Avatar'; 
-import Button from '@mui/material/Button';
-import CssBaseline from '@mui/material/CssBaseline';
-import TextField from '@mui/material/TextField';
-import Link from '@mui/material/Link';
-import Grid from '@mui/material/Grid';
-import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
-import Container from '@mui/material/Container';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+import Avatar from '@mui/material/Avatar'
+import Button from '@mui/material/Button'
+import CssBaseline from '@mui/material/CssBaseline'
+import TextField from '@mui/material/TextField'
+import Link from '@mui/material/Link'
+import Grid from '@mui/material/Grid'
+import Box from '@mui/material/Box'
+import Typography from '@mui/material/Typography'
+import Container from '@mui/material/Container'
 
-
-const theme = createTheme({
-  palette: {
-    primary: {
-      main: '#0a1b2f'
-    }
-  }
-});
-
-const Login = ({setUser, setTickets, setUserId}) => {
+const Login = ({ setUser, setTickets, setUserId }) => {
 
   const navigate = useNavigate()
 
@@ -28,8 +18,7 @@ const Login = ({setUser, setTickets, setUserId}) => {
   const [password, setPassword] = useState('')
   const [error, setError] = useState('')
 
-    // Login user
-    const handleSubmit = (e) => {
+  const handleSubmit = (e) => {
       e.preventDefault()
       fetch('/api/login', {
         method: 'POST',
@@ -52,30 +41,31 @@ const Login = ({setUser, setTickets, setUserId}) => {
             })
           }
         })
-    }
+  }
 
   return (
-    <ThemeProvider theme={theme}>
       <Container component="main" maxWidth="xs">
         <CssBaseline />
-        <Box
-          sx={{
-            marginTop: 8,
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-          }}
-        >
-          <Avatar sx={{ m: 1, bgcolor: 'primary.main' }}>
-          </Avatar>
+          <Box
+            sx={{
+              marginTop: 8,
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+            }}
+          >
+          <Avatar sx={{ m: 1, bgcolor: 'primary.main' }}></Avatar>
+
           <Typography component="h1" variant="h5">
             Sign in
           </Typography>
+
           {error && 
-            <Typography variant="subtitle1" color="error.dark">
+          <Typography variant="subtitle1" color="error.dark">
             {error}
           </Typography>
           }
+
           <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
             <TextField
               margin="normal"
@@ -107,6 +97,7 @@ const Login = ({setUser, setTickets, setUserId}) => {
             >
               Sign In
             </Button>
+
             <Grid container justifyContent="center">
               <Grid item>
                 <Link onClick={() => navigate('/signup')} variant="body2">
@@ -114,11 +105,11 @@ const Login = ({setUser, setTickets, setUserId}) => {
                 </Link>
               </Grid>
             </Grid>
+            
           </Box>
         </Box>
       </Container>
-    </ThemeProvider>
-  );
+  )
 }
 
-export default Login;
+export default Login

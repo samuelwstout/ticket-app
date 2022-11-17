@@ -1,82 +1,71 @@
-import {useState, useEffect} from 'react'
-import { useNavigate } from "react-router-dom";
+import { useState, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 import Navigation from '../Navigation'
 import {useParams} from 'react-router-dom'
-import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
-import Container from '@mui/material/Container';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
-import TextField from '@mui/material/TextField';
-import Button from '@mui/material/Button';
-
-const theme = createTheme({
-  palette: {
-    primary: {
-      main: '#0a1b2f'
-    }
-  }
-});
+import Box from '@mui/material/Box'
+import Typography from '@mui/material/Typography'
+import Container from '@mui/material/Container'
+import TextField from '@mui/material/TextField'
+import Button from '@mui/material/Button'
 
 const TicketCreate = ({userId, concerts, user, setUser, setTickets, tickets }) => {
 
-const navigate = useNavigate()
+  const navigate = useNavigate()
 
-useEffect(() => {
-  if (user === null) {
-    navigate('/')
-  }
-}, [])
+  useEffect(() => {
+    if (user === null) {
+      navigate('/')
+    }
+  }, [])
 
-const [userNotes, setUserNotes] = useState('')
-const [ticketId, setTicketId] = useState(null)
+  const [userNotes, setUserNotes] = useState('')
+  const [ticketId, setTicketId] = useState(null)
 
-const params = useParams()
-const concertId = Number(params.id)
+  const params = useParams()
+  const concertId = Number(params.id)
 
-const filter = concerts.filter(item => {
-    return item.id === concertId
-})  
-const concert = filter[0]
+  const filter = concerts.filter(item => {
+      return item.id === concertId
+  })  
+  const concert = filter[0]
 
-const handleSubmit = (e) => {
-    e.preventDefault()
-    // POST to /api/tickets
-    fetch('/api/tickets', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-          },
-        body: JSON.stringify({
-            user_id: userId,
-            concert_id: concertId,
-            user_notes: userNotes
+  const handleSubmit = (e) => {
+      e.preventDefault()
+      fetch('/api/tickets', {
+          method: 'POST',
+          headers: {
+              'Content-Type': 'application/json'
+            },
+          body: JSON.stringify({
+              user_id: userId,
+              concert_id: concertId,
+              user_notes: userNotes
+            })
           })
-        })
-        .then(res => {
-            if (res.ok) {
-                res.json().then(data => {
-                    setTicketId(data.id)
-                    setTickets([...tickets, data])
-                })
-            }
-        })
-    setUserNotes('')
-}
-
+          .then(res => {
+              if (res.ok) {
+                  res.json().then(data => {
+                      setTicketId(data.id)
+                      setTickets([...tickets, data])
+                  })
+              }
+          })
+      setUserNotes('')
+  }
 
   return (
-    <div>
+    <>
         <Navigation setUser={setUser} user={user} />
         <ThemeProvider theme={theme}>
             <main>
             <Box
-          sx={{
-            bgcolor: 'background.paper',
-            marginTop: 6,
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-          }}
+              sx={{
+                bgcolor: 'background.paper',
+                marginTop: 6,
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                }}
             >
             {concert &&
             <Container maxWidth="m">
@@ -100,7 +89,7 @@ const handleSubmit = (e) => {
             </Typography>
           </Container>
             } 
-             <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+            <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
             <Typography variant="h5" align="center" color="text.secondary">
                 Leave a note:
             </Typography>
@@ -141,7 +130,7 @@ const handleSubmit = (e) => {
             }
             </main>
         </ThemeProvider>
-    </div>
+    </>
   )
 }
 

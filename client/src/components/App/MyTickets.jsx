@@ -1,39 +1,28 @@
-import {useEffect} from 'react';
-import Navigation from "../Navigation";
-import { useNavigate } from "react-router-dom";
-import * as React from 'react';
-import Button from '@mui/material/Button';
-import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
-import CardContent from '@mui/material/CardContent';
-import Grid from '@mui/material/Grid';
-import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
-import Container from '@mui/material/Container';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
-
-const theme = createTheme({
-  palette: {
-    primary: {
-      main: '#0a1b2f'
-    }
-  }
-});
+import { useEffect } from 'react'
+import Navigation from '../Navigation'
+import { useNavigate } from 'react-router-dom'
+import Button from '@mui/material/Button'
+import Card from '@mui/material/Card'
+import CardActions from '@mui/material/CardActions'
+import CardContent from '@mui/material/CardContent'
+import Grid from '@mui/material/Grid'
+import Box from '@mui/material/Box'
+import Typography from '@mui/material/Typography'
+import Container from '@mui/material/Container'
 
 const MyTickets = ({setUser, user, tickets}) => {
 
-const navigate = useNavigate()
+  const navigate = useNavigate()
 
-useEffect(() => {
-  if (user === null) {
-    navigate('/')
-  }
-}, [])
+  useEffect(() => {
+    if (user === null) {
+      navigate('/')
+    }
+  }, [])
 
   return (
-    <div>
+    <>
       <Navigation setUser={setUser} user={user} />
-      <ThemeProvider theme={theme}>
       <main>
       <Box
           sx={{
@@ -73,8 +62,7 @@ useEffect(() => {
         </Grid>
       </Container>
       </main>
-      </ThemeProvider>
-    </div>
+    </>
   )
 }
 

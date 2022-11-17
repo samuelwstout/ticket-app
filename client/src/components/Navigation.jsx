@@ -1,40 +1,30 @@
-import { useNavigate } from 'react-router-dom';
-import AppBar from '@mui/material/AppBar';
-import CssBaseline from '@mui/material/CssBaseline';
-import Toolbar from '@mui/material/Toolbar';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
-import Typography from '@mui/material/Typography';
-import Link from '@mui/material/Link';
-import Box from '@mui/material/Box';
-
-const theme = createTheme({
-  palette: {
-    primary: {
-      main: '#0a1b2f'
-    }
-  }
-});
+import { useNavigate } from 'react-router-dom'
+import AppBar from '@mui/material/AppBar'
+import CssBaseline from '@mui/material/CssBaseline'
+import Toolbar from '@mui/material/Toolbar'
+import Typography from '@mui/material/Typography'
+import Link from '@mui/material/Link'
+import Box from '@mui/material/Box'
 
 const Navigation = ({setUser, user}) => {
 
-const navigate = useNavigate();
+  const navigate = useNavigate()
 
-const handleLogout = () => {
-    fetch('/api/logout', {
-      method: 'DELETE',
-      credentials: 'include'
-    })
-    .then(res => {
-      if (res.ok) {
-        setUser(null)
-        navigate('/')
-      }
-    })
-  }
-
+  const handleLogout = () => {
+      fetch('/api/logout', {
+        method: 'DELETE',
+        credentials: 'include'
+      })
+      .then(res => {
+        if (res.ok) {
+          setUser(null)
+          navigate('/')
+        }
+      })
+    }
 
   return (
-    <ThemeProvider theme={theme}>
+    <>
       <CssBaseline />
       <AppBar 
       position="static"
@@ -43,9 +33,9 @@ const handleLogout = () => {
       >
         <Toolbar sx={{ flexWrap: 'wrap' }}>
           {user &&
-          <Typography variant="h6" color="inherit" noWrap sx={{ flexGrow: 1 }}>
-            Hey, {user.username}!
-          </Typography>
+            <Typography variant="h6" color="inherit" noWrap sx={{ flexGrow: 1 }}>
+              Hey, {user.username}!
+            </Typography>
           }
           <Box
             sx={{
@@ -56,15 +46,16 @@ const handleLogout = () => {
             }}
             onClick={e => e.preventDefault()}
           >
-          <Link
-          variant="button"
-          color="inherit"
-          onClick={() => navigate('/concerts')}
-          sx={{ my: 1, mx: 1.5 }}
-          >
-          Concerts
-          </Link>
-          <Link
+            <Link
+              variant="button"
+              color="inherit"
+              onClick={() => navigate('/concerts')}
+              sx={{ my: 1, mx: 1.5 }}
+              >
+              Concerts
+            </Link>
+
+            <Link
               variant="button"
               color="inherit"
               onClick={() => navigate('/create_concert')}
@@ -72,6 +63,7 @@ const handleLogout = () => {
             >
               Create Concert
             </Link>
+
             <Link
               variant="button"
               color="inherit"
@@ -80,6 +72,7 @@ const handleLogout = () => {
             >
               My Tickets
             </Link>
+
             <Link
               variant="button"
               color="inherit"
@@ -89,10 +82,9 @@ const handleLogout = () => {
               Log out
             </Link>
           </Box>
-          
         </Toolbar>
       </AppBar>
-    </ThemeProvider>
+    </>
   )
 }
 

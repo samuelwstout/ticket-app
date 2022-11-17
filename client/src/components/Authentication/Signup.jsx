@@ -1,25 +1,16 @@
-import {useState} from 'react';
-import {useNavigate} from 'react-router-dom';
-import Avatar from '@mui/material/Avatar';
-import Button from '@mui/material/Button';
-import CssBaseline from '@mui/material/CssBaseline';
-import TextField from '@mui/material/TextField';
-import Link from '@mui/material/Link';
-import Grid from '@mui/material/Grid';
-import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
-import Container from '@mui/material/Container';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+import Avatar from '@mui/material/Avatar'
+import Button from '@mui/material/Button'
+import CssBaseline from '@mui/material/CssBaseline'
+import TextField from '@mui/material/TextField'
+import Link from '@mui/material/Link'
+import Grid from '@mui/material/Grid'
+import Box from '@mui/material/Box'
+import Typography from '@mui/material/Typography'
+import Container from '@mui/material/Container'
 
-const theme = createTheme({
-  palette: {
-    primary: {
-      main: '#0a1b2f'
-    }
-  }
-});
-
-const Signup = ({ setUser, setTickets, setUserId}) => {
+const Signup = ({ setUser, setTickets, setUserId }) => {
 
   const navigate = useNavigate()
 
@@ -29,7 +20,7 @@ const Signup = ({ setUser, setTickets, setUserId}) => {
   const [passwordError, setPasswordError] = useState('')
 
   const handleSubmit = (e) => {
-    e.preventDefault();
+    e.preventDefault()
     fetch('/api/signup', {
       method: 'POST',
       headers: {
@@ -59,10 +50,9 @@ const Signup = ({ setUser, setTickets, setUserId}) => {
           })
         }
       })
-  };
+  }
 
   return (
-    <ThemeProvider theme={theme}>
       <Container component="main" maxWidth="xs">
         <CssBaseline />
         <Box
@@ -73,22 +63,26 @@ const Signup = ({ setUser, setTickets, setUserId}) => {
             alignItems: 'center',
           }}
         >
-          <Avatar sx={{ m: 1, bgcolor: 'primary.main' }}>
-          </Avatar>
+          <Avatar sx={{ m: 1, bgcolor: 'primary.main' }}></Avatar>
+          
           <Typography component="h1" variant="h5">
             Sign up
           </Typography>
+
           {usernameError && 
             <Typography variant="subtitle1" color="error.dark">
               {usernameError}
             </Typography>
           }
+
           {passwordError && 
             <Typography variant="subtitle1" color="error.dark">
               {passwordError}
             </Typography>
           }
+
           <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
+
             <Grid container spacing={2}>
               <Grid item xs={12}>
                 <TextField
@@ -116,6 +110,7 @@ const Signup = ({ setUser, setTickets, setUserId}) => {
                 />
               </Grid>
             </Grid>
+
             <Button
               type="submit"
               fullWidth
@@ -124,6 +119,7 @@ const Signup = ({ setUser, setTickets, setUserId}) => {
             >
               Sign Up
             </Button>
+
             <Grid container justifyContent="center">
               <Grid item>
                 <Link onClick={() => navigate('/login')} variant="body2">
@@ -134,8 +130,7 @@ const Signup = ({ setUser, setTickets, setUserId}) => {
           </Box>
         </Box>
       </Container>
-    </ThemeProvider>
-  );
+  )
 }
 
 export default Signup
